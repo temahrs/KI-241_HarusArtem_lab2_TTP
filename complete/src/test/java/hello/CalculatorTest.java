@@ -2,19 +2,23 @@ package hello;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class CalculatorTest {
 
     @Test
     public void testSuccess() {
-        double result = new ExpressionBuilder("1+1").build().evaluate();
-        assertEquals(2.0, result);
+       Application app = new Application();
+        String response = app.calculate("1+1");
+        assertTrue(response.contains("2.0"));
     }
 
     @Test
-    public void testFailure() {
-        double result = new ExpressionBuilder("5-1").build().evaluate();
-        assertEquals(4.0, result);
+   public void testFailure() {
+        Application app = new Application();
+        String response = app.calculate("5-1");
+        assertTrue(response.contains("4.0"));
     }
 }
